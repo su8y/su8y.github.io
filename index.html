@@ -1,10 +1,173 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>Su8y</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배수아 | 소프트웨어 엔지니어 이력서</title>
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/map.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.css" rel="stylesheet"/>
 </head>
 <body>
+<div class="map-container" id="mapContainer" style="z-index: -1">
+  <div class="map" id="map"></div>
+</div>
+<header>
+  <div class="controls">
+    <button id="toggleMapBtn">📄</button>
+    <button id="darkModeToggle">☀️</button>
+    <select id="fontSizeSelect">
+      <option value="10">10px</option>
+      <option value="12">12px</option>
+      <option value="14">14px</option>
+      <option value="16">16px</option>
+      <option value="18">18px</option>
+    </select>
 
+  </div>
+</header>
+
+<main class="resume-container">
+  <section class="section header-section">
+    <div class="contact-info">
+      <h1>배수아</h1>
+      <span class="job-title">소프트웨어 엔지니어</span>
+
+      <p>
+        <a href="tel:+821056990138">Tel: (+82)10-5699-0138</a> |
+        <a href="mailto:su8y.soft@gmail.com">su8y.soft@gmail.com</a> |
+        <span>
+          <a href="https://github.com/su8y" target="_blank" aria-label="GitHub Profile">
+            <img id='github-icon' src="assets/images/github-mark.svg" width="17" height="17" alt="설명 문구"> su8y
+          </a>
+        </span> |
+        <span><a href="https://suby.tistory.com/" target="_blank">Blog</a></span></p>
+    </div>
+  </section>
+
+  <section class="section summary-section">
+    <h2 class="section-title">요약</h2>
+    <p>
+      치열하게 배우고 성장하며, 기대를 뛰어넘는 <span style="color: #3182f6; font-weight: bold;">가치를 만들어내는 개발자</span>입니다.
+    </p>
+    <p>2년차 서버 백엔드 개발자로서, Java/Spring을 중심으로 GIS 시스템의 전체 개발 과정을 경험했습니다.</p>
+    <p>단순히 코드를 작성하는 것을 넘어, 객체지향 설계 원칙을 기반으로 미래의 확장성과 유지보수성을 고려한 유연한 아키텍처를 설계하고 구축합니다.</p>
+    <p>고도로 동시적이고 논블로킹적인 코딩을 좋아합니다. 이러한 개발 프로세스를 구축하기 위해 사내에 없던 CI/CD 파이프라인을 도입하여 테스트 커버리지를 50%를 달성하여 시스템의 안정성을 높이고, 배포
+      자동화를 통해 배포 시간을 30% 단축하는 등 사내 개발 문화 개선 활동을 리드하고있습니다.</p>
+    <p>새로운 도메인에 대한 빠른 학습 능력을 바탕으로, 백엔드 개발을 넘어 프론트엔드와 AI 분야까지 폭넓게 경험하고 있습니다. CNN 모델을 학습하고 모델 서빙 API의 TPS 180%를 달성하는 등 백엔드
+      외 AI/ML 및 프론트 엔드 경험을 가지고있습니다.</p>
+    <p><span style="color: #3182f6; font-weight: bold;">'혼자 가면 빨리 가지만 함께 가면 멀리 간다'</span>는 신념 아래, 저는 팀 전체의 지속적인 성장을
+      추구합니다. 단순히 개인의 성과를 내는 것을 넘어, 테스트 확보, 설계 문서화, 그리고 코드 리뷰와 같은 과정을 통해 모두가 이해하고 기여할 수 있는 지속 가능한 코드를 만드는 데 힘씁니다. 이러한 접근이
+      궁극적으로 팀의 생산성과 코드 품질을 향상시키는 가장 효과적인 방법이라고 믿습니다.</p>
+  </section>
+
+
+  <section class="section">
+    <h2 class="section-title">업무 경험</h2>
+
+    <div class="timeline-container">
+
+      <div class="work-item current">
+        <h3>JBT/코어개발팀 - Backend-Developer</h3>
+        <span>2024년 01월~현재</span>
+      </div>
+
+      <div class="work-item">
+        <h3>사내 개발 프로세스 개선 활동</h3>
+        <p>CI/CD 테스트 환경 구축을 통한 개발 프로세스 개선 증진 활동(배포 주기 단축 및 안정성 증진 기여)</p>
+        <p class="result">성과: CI/CD 파이프라인 도입을 추진하여 사내 개발 생산성을 개선. 배포 주기 30% 단축 및 테스트 커버리지 50% 달성</p>
+      </div>
+
+      <div class="work-item">
+        <h3>차세대 공간정보 관리 지도 웹 애플리케이션 개발</h3>
+        <p>2024년 01월~2024년 06월</p>
+        <ul>
+          <li>공간정보 편집 및 실시간 협업 기능에 대한 데이터 모델링, BFF API 설계 및 개발</li>
+          <li>React.js를 활용한 사용자 인터랙티브 지도 UI 구축</li>
+        </ul>
+        <p class="result">성과: Lock 메커니즘을 적용해 실시간 협업 데이터 동기화 문제 해결, React.js를 활용한 사용자 인터랙티브 지도 UI 구축.</p>
+      </div>
+
+      <div class="work-item">
+        <h3>영국 ESN 재난안전통신망</h3>
+        <p>2025년 01월 ~ 현재</p>
+        <p>100+억원 규모의 SI 프로젝트 참여</p>
+        <p>4대의 데이터센터의 분산 배치된 16개의 서버 상태를 수집 및 분석하고, 이상감지시 대응할 수 있도록 설계된 통합 모니터링 및 알림 시스템 개발</p>
+        <p class="result">성과: 로우레벨 언어(C)를 활용해 메모리 관리 및 커널 상태를 직접 다루는 경험, 안정적인 서비스 운영을 위한 시스템 설계.</p>
+      </div>
+
+    </div> </section>
+
+  <section class="section">
+    <h2 class="section-title">기술 스택</h2>
+    <div class="skill-group">
+      <h4>Java & Spring</h4>
+      <p>객체지향 설계 원칙을 깊이 이해하고 유연하고 확장가능한 아키텍처를 구현하며, TDD 기반의 견고하고 테스트 용이성이 높은 시스템을 구축합니다.</p>
+    </div>
+    <div class="skill-group">
+      <h4>Typescript & React.js</h4>
+      <p>GIS 지도 애플리케이션의 사용자 인터페이스(UI)를 구축하며 컴포넌트 기반 개발 및 상태 관리에 대한 이해를 바탕으로 동적인 UI를 구축할수있습니다.</p>
+    </div>
+    <div class="skill-group">
+      <h4>C/C++</h4>
+      <p>100+억원 가량의 시스템 모니터링 에이전트 개발에 참여하여 안정적인 로직 구현에 기여했습니다.</p>
+      <p>특히 자원 제약적인 환경에서도 신중하게 설계하고, 장애 발생 시 서비스 연속성을 보장하는 페일오버(Failover) 메커니즘 구축을 지원했습니다.</p>
+    </div>
+    <div class="skill-group">
+      <h4>Pytorch & FastAPI</h4>
+      <p>해결하고자하는 문제를 빠르게 프로토타이핑 할 수 있습니다.</p>
+      <p>CNN 기반 산불 모니터링 모델 연구 및 최적화 경험을 통해 머신러닝 모델의 개발, 학습, 평가에 활용하며, 주도적으로 머신러닝 모델 서빙을 위한 PoC(Proof of Concept) 개발을
+        하였습니다.</p>
+    </div>
+    <div class="skill-group">
+      <h4>PostgreSQL</h4>
+      <p>관계형 데이터베이스의 기본 원칙들을 깊이 이해하고 있으며, 이를 바탕으로 데이터 모델링 및 효율적인 쿼리 작성을 합니다.</p>
+    </div>
+    <div class="skill-group">
+      <h4>Docker & Kubernetes</h4>
+      <p>[비효율을 끊어내는 여정] 개발 프로세스의 비효율을 끊어내고자 CI/CD 파이프라인과 연동하여 빌드, 테스트, 배포 과정을 자동화하고 개발 생산성을 개선하고 있으며, 테스트 환경 구축을 통해 품질
+        향상에 기여하고 있습니다.</p>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2 class="section-title">기타 활동</h2>
+    <div class="other-activities">
+      <div class="activity-item">
+        <h3>Apache 오픈소스 기여</h3>
+        <p>2025년 07월 ~ 현재</p>
+        <p>오픈소스 기여 회고</p>
+      </div>
+      <div class="activity-item">
+        <h3>CNN기반 산불 모니터링</h3>
+        <p>2025년 06월 ~ 2025년 07월</p>
+        <p class="result">성과: CNN 기반 모델 연구 및 최적화를 통해 기존 모델 대비 180% 향상된 TPS를 확보했습니다.</p>
+      </div>
+      <div class="activity-item">
+        <h3>알고리즘 스터디(PS ATTACK 스터디장)</h3>
+        <p>2022년 08월 ~ 2024년 01월</p>
+        <p>다양한 알고리즘 문제의 노출되어 서로의 문제해결 의견을 나누는 온/오프라인 스터디 운영</p>
+        <p>4주의 온라인 스터디, 종합 500+건의 문제 풀이와 리뷰를 진행하였습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="section-title">학력</h2>
+    <div class="education">
+      <h3>경민대학교, 소프트웨어학과 전문학사 (3년)</h3>
+      <p>2019년 03월 ~ 2024년 02월</p>
+    </div>
+  </section>
+
+</main>
+
+<script src="static/js/script.js"></script>
+<script src="static/js/map.js"></script>
+<script src="https://unpkg.com/maplibre-gl@latest/dist/maplibre-gl.js"></script>
+<script src="lib/geoport/geoport.umd.js"></script>
 </body>
 </html>
