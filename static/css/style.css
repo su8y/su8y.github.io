@@ -156,7 +156,7 @@ ul {
     transform: scale(1.1);
 }
 
-#fontSizeSelect {
+#font-size-select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -172,7 +172,7 @@ ul {
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
-#fontSizeSelect:hover {
+#font-size-select:hover {
     opacity: 0.8;
 }
 
@@ -275,11 +275,11 @@ ul {
 .work-item.current h3 {
     color: var(--primary-color);
 }
-.work-item:not(.current) {
+.work-item:not(.current) > *{
     opacity: 0.7;
     transition: opacity 0.3s ease;
 }
-.work-item:not(.current):hover {
+.work-item:not(.current):hover > * {
     opacity: 1;
 }
 

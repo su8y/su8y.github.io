@@ -1,35 +1,28 @@
-let map;
+import {darkMapStyleObject, lightMapStyleObject} from "./layer.js";
+import {fontSizeChangeEventListener, themeChangeEventListener, mapToggleEventListener} from './theme.js'
+import * as Constant from './constant.js';
 
-// --- 💡 FIX 1: 지도 스타일 '객체'를 미리 정의합니다 ---
-
-const lightMapStyleObject = {
-    version: 8,
-    sources: {
-        'vworld-source': {
-            type: 'raster',
-            tiles: [`https://api.vworld.kr/req/wmts/1.0.0/${config.apikey}/Base/{z}/{y}/{x}.png`],
-            tileSize: 256,
-            attribution: '© <a href="https://www.vworld.kr/">V-World</a>'
-        }
-    },
-    layers: [{'id': 'vworld-layer', 'type': 'raster', 'source': 'vworld-source'}]
-};
-
-const darkMapStyleObject = {
-    version: 8,
-    sources: {
-        'vworld-source': {
-            type: 'raster',
-            tiles: [`https://api.vworld.kr/req/wmts/1.0.0/${config.apikey}/midnight/{z}/{y}/{x}.png`],
-            tileSize: 256,
-            attribution: '© <a href="https://www.vworld.kr/">V-World</a>'
-        }
-    },
-    layers: [{'id': 'vworld-layer', 'type': 'raster', 'source': 'vworld-source'}]
-};
+(() => {
+    const themeToggleButton = document.getElementById('theme-toggle-btn');
+    const fontSizeSelect = document.getElementById('font-size-select');
+    const mapToggleButton = document.getElementById('map-toggle-btn');
+    const body = document.body;
 
 
-document.addEventListener('DOMContentLoaded', function () {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+    }
+
+    const savedFontSize = localStorage.getItem('fontSize');
+    if (savedFontSize) {
+        fontSizeSelect.value = savedFontSize;
+    }
+
+    themeToggleButton.addEventListener('click', themeChangeEventListener);
+    fontSizeSelect.addEventListener('change', fontSizeChangeEventListener);
+    mapToggleButton.addEventListener('click', mapToggleEventListener);
+
     const curvedRouteCoordinates = [
         [127.0447, 37.7741], // 양주역
         [127.0343, 37.7619], // 경민대학교
@@ -40,84 +33,72 @@ document.addEventListener('DOMContentLoaded', function () {
     const mapContainer = document.getElementById('mapContainer');
     const mapDiv = document.getElementById('map');
     const historyItems = document.querySelectorAll('.work-item:not(.current)');
-    const toggleMapBtn = document.getElementById('toggleMapBtn');
     let mapInitializedFlag = false;
     let activePopup = null;
 
     initializeMap();
 
-    function updateMapStyle(newTheme) {
-        if (!map) return;
 
-        // --- 💡 FIX 2: 테마에 맞는 '객체'를 선택합니다 ---
-        const newMapStyleObject = (newTheme === 'dark') ? darkMapStyleObject : lightMapStyleObject;
-
-        // 맵 스타일 변경 시 URL이 아닌 객체를 전달합니다.
-        map.setStyle(newMapStyleObject);
-
-        map.once('styledata', function () {
-            visualizeRoute(historyItems);
-        });
-    }
-
-    const themeToggleButton = document.getElementById('darkModeToggle');
-    if (themeToggleButton) {
-        themeToggleButton.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateMapStyle(newTheme);
-        });
-    }
 
     function initializeMap() {
-        // --- 💡 FIX 3: 초기 테마에 맞는 '객체'를 선택합니다 ---
         const savedTheme = localStorage.getItem('theme');
-        const initialMapStyle = (savedTheme === 'dark') ? darkMapStyleObject : lightMapStyleObject;
-        document.documentElement.setAttribute('data-theme', savedTheme);
+        const initialMapStyle = (savedTheme === 'dark') ? Constant.dark.mapLayer : Constant.light.mapLayer;
 
-        map = new maplibregl.Map({
+        window.map = new maplibregl.Map({
             container: 'map',
             style: initialMapStyle, // 👈 URL 대신 Style 객체를 사용합니다.
             center: [127.0017, 37.5665],
             zoom: 10
         });
 
-        map.on('load', function () {
+        function updateMapStyle(newTheme) {
+            if (!window.map) return;
+
+            const newMapStyleObject = (newTheme === Constant.dark.text) ? darkMapStyleObject : lightMapStyleObject;
+
+            window.map.setStyle(newMapStyleObject);
+
+            window.map.once('styledata', function () {
+                visualizeRoute(historyItems);
+            });
+        }
+
+        const mapLoadEventListener = () => {
             visualizeRoute(historyItems);
             mapInitializedFlag = true;
-        });
 
-        map.on('click', function (e) {
+        }
+
+        const clearPopupEventListener = (e) => {
             if (e.originalEvent.target.closest('.work-item-marker')) return;
             if (activePopup) {
                 activePopup.remove();
                 activePopup = null;
             }
-        });
+        }
+
+        window.map.on('load', mapLoadEventListener);
+        window.map.on('click', clearPopupEventListener);
+        window.map.updateStyle = updateMapStyle;
     }
 
     function visualizeRoute(items) {
-        // 이 함수는 기존 로직 그대로 유지됩니다.
-        if (!map.isStyleLoaded()) {
-            // 스타일이 로드되지 않았으면 잠시 후 다시 시도
+        if (!window.map.isStyleLoaded()) {
             setTimeout(() => visualizeRoute(items), 100);
             return;
         }
 
-        if (map.getLayer('history-route-line')) map.removeLayer('history-route-line');
-        if (map.getSource('history-route')) map.removeSource('history-route');
+        if (window.map.getLayer('history-route-line')) window.map.removeLayer('history-route-line');
+        if (window.map.getSource('history-route')) window.map.removeSource('history-route');
         document.querySelectorAll('.maplibregl-marker').forEach(marker => marker.remove());
 
-        // ... (이하 visualizeRoute 함수 내용은 그대로 유지) ...
         const placeNames = ["양주역", "경민대학교", "판교 테크노밸리", "야탑역"];
         curvedRouteCoordinates.forEach((coord, index) => {
             const placeName = placeNames[index % placeNames.length];
             const el = document.createElement('div');
             el.className = 'vertex-marker';
             el.innerHTML = `<div class="marker-pin"></div><div class="marker-text">${placeName}</div>`;
-            new maplibregl.Marker({element: el, anchor: 'bottom'}).setLngLat(coord).addTo(map);
+            new maplibregl.Marker({element: el, anchor: 'bottom'}).setLngLat(coord).addTo(window.map);
         });
 
         items.forEach((item, i) => {
@@ -130,10 +111,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const workItemResult = item.querySelector('.result') ? item.querySelector('.result').textContent : '';
 
             const popupContent = `<div class="marker-popup-content"><h4>${workItemTitle}</h4><p>${workItemPeriod}</p><p>${workItemDescription}</p>${workItemResult ? `<p class="result-text">${workItemResult}</p>` : ''}</div>`;
-            const popup = new maplibregl.Popup({offset: 15, closeButton: true, closeOnClick: false}).setHTML(popupContent);
+            const popup = new maplibregl.Popup({
+                offset: 15,
+                closeButton: true,
+                closeOnClick: false
+            }).setHTML(popupContent);
             const elWork = document.createElement('div');
             elWork.className = 'work-item-marker';
-            const marker = new maplibregl.Marker({element: elWork, anchor: 'center'}).setLngLat(coords).setPopup(popup).addTo(map);
+            const marker = new maplibregl.Marker({
+                element: elWork,
+                anchor: 'center'
+            }).setLngLat(coords).setPopup(popup).addTo(window.map);
             elWork.addEventListener('click', (e) => {
                 e.preventDefault()
                 if (activePopup) activePopup.remove();
@@ -148,14 +136,14 @@ document.addEventListener('DOMContentLoaded', function () {
             bounds.extend(coord);
         }
         const padding = {top: 50, bottom: 50, left: 50, right: 50};
-        zoomLevel = map.cameraForBounds(bounds, {padding: padding}).zoom;
-        map.flyTo({center: bounds.getCenter(), zoom: zoomLevel, speed: 1.5});
+        zoomLevel = window.map.cameraForBounds(bounds, {padding: padding}).zoom;
+        window.map.flyTo({center: bounds.getCenter(), zoom: zoomLevel, speed: 1.5});
 
-        map.addSource('history-route', {
+        window.map.addSource('history-route', {
             type: 'geojson',
             data: {type: 'Feature', geometry: {type: 'LineString', coordinates: curvedRouteCoordinates}}
         });
-        map.addLayer({
+        window.map.addLayer({
             id: 'history-route-line',
             type: 'line',
             source: 'history-route',
@@ -164,35 +152,12 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // ... (이하 토글 버튼, 스크롤 이벤트 리스너 등은 그대로 유지) ...
-    toggleMapBtn.addEventListener('click', function () {
-        if (mapContainer.style.zIndex == -1 || mapDiv.style.opacity == 0.3) {
-            mapContainer.style.zIndex = 999;
-            mapDiv.style.opacity = 1;
-            toggleMapBtn.textContent = '🗺️';
-            if (!mapInitializedFlag) {
-                initializeMap();
-            } else {
-                setTimeout(() => {
-                    map.resize();
-                    if (zoomLevel) {
-                        map.flyTo({center: map.getCenter(), zoom: zoomLevel, speed: 1.2});
-                    }
-                }, 100);
-            }
-        } else {
-            toggleMapBtn.textContent = '📄';
-            mapContainer.style.zIndex = -1;
-            mapDiv.style.opacity = 0.3;
-        }
-    });
-
     historyItems.forEach((item, index) => {
         item.addEventListener('mouseenter', function () {
             const ratio = (index + 1) / (historyItems.length + 1);
             const coords = GeoPort.getPointAtRatio(curvedRouteCoordinates, ratio);
-            if (map && coords) {
-                map.flyTo({center: coords, zoom: zoomLevel + 1.5, speed: 1.5, essential: true});
+            if (window.map && coords) {
+                window.map.flyTo({center: coords, zoom: zoomLevel + 1.5, speed: 1.5, essential: true});
             }
             const targetMarkerElement = document.querySelectorAll('.work-item-marker')[index];
             if (targetMarkerElement) targetMarkerElement.click();
@@ -213,8 +178,9 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     };
+
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     historyItems.forEach(item => {
         observer.observe(item);
     });
-});
+})();

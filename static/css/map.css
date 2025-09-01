@@ -151,13 +151,6 @@
     text-align: right;
 }
 
-/* 팝업 꼬리 (화살표) */
-.maplibregl-popup-tip {
-    border-top-color: var(--card-background-color) !important;
-    border-bottom-color: var(--card-background-color) !important;
-    border-left-color: var(--card-background-color) !important;
-    border-right-color: var(--card-background-color) !important;
-}
 
 /* 다크 모드 팝업 스타일 */
 body.dark-mode .maplibregl-popup-content {
@@ -167,12 +160,6 @@ body.dark-mode .maplibregl-popup-content {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-body.dark-mode .maplibregl-popup-tip {
-    border-top-color: var(--card-background-color) !important;
-    border-bottom-color: var(--card-background-color) !important;
-    border-left-color: var(--card-background-color) !important;
-    border-right-color: var(--card-background-color) !important;
-}
 /* =============================================== */
 /* Map Marker Styles                               */
 /* =============================================== */
@@ -205,25 +192,6 @@ body.dark-mode .maplibregl-popup-tip {
     transform: scale(1.3);
 }
 
-/* 3. 팝업 컨텐츠 스타일 (기존.map-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    flex: 2;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: var(--box-shadow);
-    transition: opacity var(--transition-speed);
-}
-
-.map {
-    width: 100%;
-    height: 100%;
-    opacity: 0.3;
-}
-
 /* =============================================== */
 /* Map Marker & Popup Styles                       */
 /* =============================================== */
@@ -236,8 +204,6 @@ body.dark-mode .maplibregl-popup-tip {
     cursor: pointer;
     transform: translateY(10px); /* 마커 핀 기준점 조정 */
 }
-
-/* 마커 핀 스타일 */
 
 /* 마커 핀 하단 꼬리 */
 .marker-pin::after {
@@ -357,14 +323,6 @@ body.dark-mode .maplibregl-popup-tip {
     text-align: right;
 }
 
-/* 팝업 꼬리 (화살표) */
-.maplibregl-popup-tip {
-    border-top-color: var(--card-background-color) !important;
-    border-bottom-color: var(--card-background-color) !important;
-    border-left-color: var(--card-background-color) !important;
-    border-right-color: var(--card-background-color) !important;
-}
-
 /* 다크 모드 팝업 스타일 */
 body.dark-mode .maplibregl-popup-content {
     background-color: var(--card-background-color);
@@ -373,12 +331,6 @@ body.dark-mode .maplibregl-popup-content {
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
 }
 
-body.dark-mode .maplibregl-popup-tip {
-    border-top-color: var(--card-background-color) !important;
-    border-bottom-color: var(--card-background-color) !important;
-    border-left-color: var(--card-background-color) !important;
-    border-right-color: var(--card-background-color) !important;
-}
 /* =============================================== */
 /* Map Marker Styles                               */
 /* =============================================== */
@@ -441,7 +393,6 @@ body.dark-mode .maplibregl-popup-tip {
     border-left: 3px solid var(--primary-color);
     padding-left: 8px;
 }
-과 동일하게 사용 가능) */
 .marker-popup-content {
     background-color: var(--card-background-color);
     color: var(--text-color);
@@ -470,4 +421,25 @@ body.dark-mode .maplibregl-popup-tip {
     margin-top: 10px;
     border-left: 3px solid var(--primary-color);
     padding-left: 8px;
+}
+
+
+/* 팝업이 마커 '위에' 있을 때 (꼬리는 아래를 향함) */
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+    border-top-color: var(--card-background-color); !important;
+}
+
+/* 팝업이 마커 '아래에' 있을 때 (꼬리는 위를 향함) */
+.maplibregl-popup-anchor-top .maplibregl-popup-tip {
+    border-bottom-color: var(--card-background-color); !important;
+}
+
+/* 팝업이 마커 '오른쪽'에 있을 때 (꼬리는 왼쪽을 향함) */
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+    border-left-color: var(--card-background-color); !important;
+}
+
+/* 팝업이 마커 '왼쪽'에 있을 때 (꼬리는 오른쪽을 향함) */
+.maplibregl-popup-anchor-left .maplibregl-popup-tip {
+    border-right-color: var(--card-background-color); !important;
 }
