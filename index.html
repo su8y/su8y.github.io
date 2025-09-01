@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>배수아 | 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="static/css/style.css">
-  <link rel="stylesheet" href="static/css/map.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="lib/maplibre/maplibre-gl.css" rel="stylesheet"/>
+  <script src="lib/maplibre/maplibre-gl.js"></script>
+  <script src="lib/geoport/geoport.umd.js"></script>
+
+  <link rel="stylesheet" href="static/css/style.css">
+  <link rel="stylesheet" href="static/css/map.css">
 </head>
 <body>
 <div class="map-container" id="mapContainer" style="z-index: -1">
@@ -16,9 +20,9 @@
 </div>
 <header>
   <div class="controls">
-    <button id="toggleMapBtn">📄</button>
-    <button id="darkModeToggle">☀️</button>
-    <select id="fontSizeSelect">
+    <button id="map-toggle-btn">📄</button>
+    <button id="theme-toggle-btn">☀️</button>
+    <select id="font-size-select">
       <option value="10">10px</option>
       <option value="12">12px</option>
       <option value="14">14px</option>
@@ -166,9 +170,6 @@
 </main>
 
 <script src="apikey.js"></script>
-<script src="static/js/script.js"></script>
-<script src="static/js/map.js"></script>
-<script src="lib/maplibre/maplibre-gl.js"></script>
-<script src="lib/geoport/geoport.umd.js"></script>
+<script src="static/js/main.js" type="module"></script>
 </body>
 </html>
