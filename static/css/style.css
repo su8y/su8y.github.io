@@ -44,6 +44,11 @@ body {
     margin: 0;
     padding: 0;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 a {
     color: var(--primary-color);
@@ -259,11 +264,26 @@ ul {
     margin-bottom: 4px;
     font-weight: 600;
 }
-.work-item span {
+.work-item span,
+.work-item p {
     font-size: 0.9rem;
-    color: var(--secondary-text-color);
+    color: var(--text-color);
     margin-bottom: 12px;
     display: block;
+}
+
+.work-item p > span {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin: 0;
+    display: block;
+}
+
+.work-item img {
+    max-width: 70%;
+    height: auto;
+    display: block;
+    margin: 0 auto 16px auto;
 }
 
 /* Current Item Highlight */
