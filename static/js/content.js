@@ -1,3 +1,6 @@
+/**
+ * @typedef {string[]} DescriptionContent
+ */
 document.addEventListener('DOMContentLoaded', () => {
     fetchContentAndRender('ko');
 });
@@ -9,9 +12,28 @@ async function fetchContentAndRender(lang) {
     }
     const data = await response.json();
     console.log(data)
+    renderSummary(data.summary)
     renderSkills(data.skills)
 }
 
+/**
+ * @typedef {object} Summary
+ * @property {DescriptionContent} paragraphs - 기술 스택의 이름
+ */
+
+/**
+ *
+ * @param {Summary} summary
+ */
+
+function renderSummary(summary) {
+    const section = document.getElementById("section-summary")
+    summary.paragraphs.forEach(p=>{
+        const temp = document.createElement('div')
+        temp.innerHTML = marked.parse(p)
+        section.appendChild(temp.firstElementChild);
+    })
+}
 /**
  * @typedef {object} Skill
  * @property {string} name - 기술 스택의 이름
