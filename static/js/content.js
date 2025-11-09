@@ -1,6 +1,14 @@
 /**
  * @typedef {string[]} DescriptionContent
  */
+
+/**
+ * @typedef {object} Content
+ * @property {string} name - 이름
+ * @property {string} period - 날짜
+ * @property {string?} description - 설명
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchContentAndRender('ko');
 });
@@ -14,6 +22,7 @@ async function fetchContentAndRender(lang) {
     console.log(data)
     renderSummary(data.summary)
     renderSkills(data.skills)
+    renderEducation(data.educations)
 }
 
 /**
@@ -59,5 +68,29 @@ function renderSkills(skills) {
         skillSection.appendChild(tempContainer.firstElementChild)
     })
 
+
+}
+
+/**
+ * @typedef {object} Education
+ * @property {string} name - 이름
+ * @property {string} period - 날짜
+ */
+/**
+ *
+ * @param {Education[]} educations
+ */
+function renderEducation(educations) {
+    const section = document.getElementById("section-education")
+    educations.forEach(education=>{
+        const temp = document.createElement("div");
+        temp.innerHTML = `
+            <div class="education">
+              <h3>${education.name}</h3>
+              <p class="text-secondary">${education.period}</p>
+            </div>
+        `;
+        section.appendChild(temp.firstElementChild);
+    })
 
 }
