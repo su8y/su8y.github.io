@@ -19,7 +19,6 @@ async function fetchContentAndRender(lang) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    console.log(data)
     renderSummary(data.summary)
     renderExperience(data.experiences)
     renderOtherExperience(data['other-experiences'])
@@ -56,6 +55,7 @@ function renderSummary(summary) {
  * @property {string[]} result - 배경
  * @property {string} additional - 배경
  * @property {string[]} images - 배경
+ * @property {Additional[]} additional
  */
 
 /**
@@ -73,8 +73,8 @@ function renderExperience(experiences) {
         const temp = document.createElement('div');
         temp.innerHTML = `
         <div class="work-item ${i === 0 ? 'current' : ''}">
-            <h3>${experience.name}</h3>
-            <p>${experience.role} (${experience.period})</p>
+            <h3 class="text-lg">${experience.name}</h3>
+            <span>${experience.role} (${experience.period})</span>
             ${imageElement ? imageElement : ''}
             ${bgElementList ? `<strong>[배경]</strong>:
                 <ul>
@@ -88,7 +88,6 @@ function renderExperience(experiences) {
                 <ul>
                 ${resultElementList.join("")}
                 </ul>` : ''}
-            
         </div>
         `
         section.appendChild(temp.firstElementChild);
@@ -111,18 +110,18 @@ function renderOtherExperience(otherExperiences) {
         const temp = document.createElement('div');
         temp.innerHTML = `
         <div class="activity-item">
-            <h3>${experience.name}</h3>
-            <p>${experience.role} (${experience.period})</p>
+            <h3 class="text-lg">${experience.name}</h3>
+            <p class="text-sm">${experience.role} (${experience.period})</p>
             ${imageElement ? imageElement : ''}
-            ${bgElementList ? `<strong>[배경]</strong>:
+            ${bgElementList ? `
                 <ul>
                 ${bgElementList.join("")}
                 </ul>` : ''}
-            ${contentElementList ? `<strong>[내용]</strong>:
+            ${contentElementList ? `
                 <ul>
                 ${contentElementList.join("")}
                 </ul>` : ''}
-            ${resultElementList ? `<strong>[결과]</strong>:
+            ${resultElementList ? `
                 <ul>
                 ${resultElementList.join("")}
                 </ul>` : ''}
@@ -152,7 +151,7 @@ function renderSkills(skills) {
         const tempContainer = document.createElement('div');
         tempContainer.innerHTML = `
             <div class="skill-group">
-                <h4>${skill.name}</h4>
+                <h3 class="text-lg">${skill.name}</h3>
                 <p>${skill.description}</p>
             </div>
         `
@@ -177,7 +176,7 @@ function renderEducation(educations) {
         const temp = document.createElement("div");
         temp.innerHTML = `
             <div class="education">
-              <h3>${education.name}</h3>
+              <h3 class="text-lg">${education.name}</h3>
               <p class="text-secondary">${education.period}</p>
             </div>
         `;

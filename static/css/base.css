@@ -85,12 +85,6 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
 }
 
-/* 단락 기본 마진 설정 */
-p {
-    margin-top: 0;
-    margin-bottom: 1em;
-    line-height: 1.6; /* 가독성을 위한 줄 간격 */
-}
 
 /* 목록 스타일 제거 */
 ul {

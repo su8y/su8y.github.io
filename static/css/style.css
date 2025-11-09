@@ -142,7 +142,6 @@
 .work-item p,
 .activity-item p {
     color: var(--secondary-text-color);
-    margin-bottom: 1em;
 }
 
 .result {
@@ -204,7 +203,6 @@
 .work-item p {
     font-size: 0.9rem;
     color: var(--text-color);
-    margin-bottom: 12px;
     display: block;
 }
 
