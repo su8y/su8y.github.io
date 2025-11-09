@@ -22,6 +22,7 @@ async function fetchContentAndRender(lang) {
     console.log(data)
     renderSummary(data.summary)
     renderExperience(data.experiences)
+    renderOtherExperience(data['other-experiences'])
     renderSkills(data.skills)
     renderEducation(data.educations)
 }
@@ -72,6 +73,44 @@ function renderExperience(experiences) {
         const temp = document.createElement('div');
         temp.innerHTML = `
         <div class="work-item ${i === 0 ? 'current' : ''}">
+            <h3>${experience.name}</h3>
+            <p>${experience.role} (${experience.period})</p>
+            ${imageElement ? imageElement : ''}
+            ${bgElementList ? `<strong>[배경]</strong>:
+                <ul>
+                ${bgElementList.join("")}
+                </ul>` : ''}
+            ${contentElementList ? `<strong>[내용]</strong>:
+                <ul>
+                ${contentElementList.join("")}
+                </ul>` : ''}
+            ${resultElementList ? `<strong>[결과]</strong>:
+                <ul>
+                ${resultElementList.join("")}
+                </ul>` : ''}
+            
+        </div>
+        `
+        section.appendChild(temp.firstElementChild);
+    })
+
+}
+
+/**
+ *
+ * @param {Experience[]} experiences
+ */
+function renderOtherExperience(otherExperiences) {
+    const section = document.getElementById("section-other").querySelector(".other-activities");
+    otherExperiences.forEach((experience,i)=>{
+        const bgElementList = experience.background && experience.background.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const contentElementList =experience.content && experience.content.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const resultElementList = experience.result && experience.result.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const imageElement = experience.images && createCarousel(`other-${i}`, experience.images);
+
+        const temp = document.createElement('div');
+        temp.innerHTML = `
+        <div class="activity-item">
             <h3>${experience.name}</h3>
             <p>${experience.role} (${experience.period})</p>
             ${imageElement ? imageElement : ''}

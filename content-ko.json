@@ -98,6 +98,53 @@
       ]
     }
   ],
+  "other-experiences": [
+    {
+      "name": "LensPay 개발",
+      "role": "기획, 설계, 백엔드 개발",
+      "period": "2025년 09월 ~ 현재",
+      "content": [
+        "서비스 개발 및 배포, 유지보수 작업"
+      ],
+      "additional": [
+        "http://introduce.lenspay.site"
+      ]
+    },
+    {
+      "name": "Apache Gravitino OpenSource Contributor",
+      "role": "Contributor",
+      "period": "2025년 07월 ~ 현재",
+      "content": [
+        "Apache Opensource 기여"
+      ],
+      "additional": [
+        "https://suby.tistory.com/entry/WET-vs-DRYfeat-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EA%B8%B0%EC%97%AC"
+      ]
+    },
+    {
+      "name": "CNN 기반 산불 모니터링",
+      "role": "1인 개발",
+      "period": "2025년 06월 ~ 2025년 07월",
+      "content": [
+        "CNN 기반 모델 연구 및 최적화를 통해 기존 모델 대비 180% 향상된 TPS를 확보했습니다."
+      ],
+      "additional": [
+        "https://github.com/su8y/yolov8-fire-smoke-detection"
+      ]
+    },
+    {
+      "name": "알고리즘 스터디",
+      "role": "스터디 리더",
+      "period": "2022년 08월 ~ 2024년 01월",
+      "content": [
+        "다양한 알고리즘 문제의 노출되어 서로의 문제해결 의견을 나누는 온/오프라인 스터디 운영",
+        "4주의 온라인 스터디, 종합 500+건의 문제 풀이와 리뷰를 진행하였습니다."
+      ],
+      "additional": [
+        "https://github.com/su8y/yolov8-fire-smoke-detection"
+      ]
+    }
+  ],
   "skills": [
     {
       "name": "Java & Spring",
