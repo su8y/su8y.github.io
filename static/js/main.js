@@ -17,6 +17,7 @@ import * as Constant from './constant.js';
     const savedFontSize = localStorage.getItem('fontSize');
     if (savedFontSize) {
         fontSizeSelect.value = savedFontSize;
+        document.documentElement.style.fontSize = `${savedFontSize}px`;
     }
 
     themeToggleButton.addEventListener('click', themeChangeEventListener);

@@ -26,6 +26,7 @@ export const themeChangeEventListener = (e) => {
 export const fontSizeChangeEventListener = (event) => {
     const selectedSize = event.target.value;
     document.documentElement.style.setProperty('--base-font-size', `${selectedSize}px`);
+    document.documentElement.style.fontSize = `${selectedSize}px`;
     localStorage.setItem('fontSize', selectedSize);
 }
 export const mapToggleEventListener = (event) => {

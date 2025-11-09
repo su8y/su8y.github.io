@@ -1,71 +1,7 @@
 /* =============================================== */
 /* 1. Global Styles & Variables                    */
 /* =============================================== */
-@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
 
-:root {
-    /* Colors */
-    --primary-color: #3182f6;
-    --border-color: #e9ecef;
-    --shadow-color: rgba(0, 0, 0, 0.05);
-
-    /* Light Mode (default) */
-    --background-color: #f8f9fa;
-    --card-background-color: #ffffff;
-    --text-color: #212529;
-    --secondary-text-color: #6c757d;
-
-    /* Typography */
-    --base-font-size: 14px;
-}
-
-body.dark-mode {
-    --primary-color: #3182f6;
-    --border-color: #495057;
-    --shadow-color: rgba(0, 0, 0, 0.2);
-
-    --background-color: #121212;
-    --card-background-color: #1e1e1e;
-    --text-color: #e9ecef;
-    --secondary-text-color: #adb5bd;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Pretendard', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    font-size: var(--base-font-size);
-    line-height: 1.7;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    margin: 0;
-    padding: 0;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.2s ease-in-out;
-}
-
-a:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-}
-
-ul {
-    padding-left: 20px;
-    list-style-position: outside;
-}
 
 /* =============================================== */
 /* 2. Main Layout & Container                      */

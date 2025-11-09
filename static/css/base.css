@@ -1,0 +1,124 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+:root {
+    /* Colors */
+    --primary-color: #3182f6;
+    --border-color: #e9ecef;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+
+    /* Light Mode (default) */
+    --background-color: #f8f9fa;
+    --card-background-color: #ffffff;
+    --text-color: #212529;
+    --secondary-text-color: #6c757d;
+
+    /* Typography */
+    --base-font-size: 14px;
+
+    --font-size-xs: 0.75rem;  /* 12px */
+    --font-size-sm: 0.875rem; /* 14px (text-1) */
+    --font-size-base: 1rem;    /* 16px (text-2) */
+    --font-size-lg: 1.125rem;  /* 18px (text-3) */
+    --font-size-xl: 1.25rem;   /* 20px (text-4) */
+    --font-size-2xl: 1.5rem;   /* 24px (text-5) */
+}
+
+body.dark-mode {
+    --primary-color: #3182f6;
+    --border-color: #495057;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+
+    --background-color: #121212;
+    --card-background-color: #1e1e1e;
+    --text-color: #e9ecef;
+    --secondary-text-color: #adb5bd;
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: var(--base-font-size);
+    line-height: 1.7;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+a:hover {
+    text-decoration: underline;
+    opacity: 0.8;
+}
+
+
+a:hover {
+    text-decoration: underline; /* 마우스 오버 시 밑줄 표시 */
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* 제목 태그 기본 마진 및 폰트 크기 설정 (h1-h6) */
+h1, h2, h3, h4, h5, h6 {
+    /*color: var(--color-text-primary);*/
+    margin-top: 0;
+    margin-bottom: 0.5em; /* 폰트 크기에 비례하는 마진 */
+    line-height: 1.2;
+}
+
+/* 단락 기본 마진 설정 */
+p {
+    margin-top: 0;
+    margin-bottom: 1em;
+    line-height: 1.6; /* 가독성을 위한 줄 간격 */
+}
+
+/* 목록 스타일 제거 */
+ul {
+    padding-left: 20px;
+    list-style-position: outside;
+}
+
+/* 이미지 반응형 설정 */
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle; /* 이미지와 텍스트 정렬 이슈 방지 */
+    display: inline-block;
+}
+
+.text-xs { font-size: var(--font-size-xs) !important; }
+.text-sm { font-size: var(--font-size-sm) !important; }
+.text-md { font-size: var(--font-size-base) !important; }
+.text-lg { font-size: var(--font-size-lg) !important; }
+.text-xl { font-size: var(--font-size-xl) !important; }
+.text-xxl { font-size: var(--font-size-2xl) !important; }
+
+/* 추가: 텍스트 정렬 */
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+
+/* 추가: 텍스트 색상 (선택 사항) */
+/* 이력서 프로젝트의 :root 변수를 사용한다고 가정 */
+.text-primary { color: var(--primary-color) !important; }
+.text-secondary { color: var(--secondary-text-color) !important; }
