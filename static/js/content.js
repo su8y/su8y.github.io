@@ -76,15 +76,15 @@ function renderExperience(experiences) {
             <h3 class="text-lg">${experience.name}</h3>
             <span>${experience.role} (${experience.period})</span>
             ${imageElement ? imageElement : ''}
-            ${bgElementList ? `<strong>[배경]</strong>:
+            ${bgElementList ? `<strong class="text-sm">[배경]</strong>:
                 <ul>
                 ${bgElementList.join("")}
                 </ul>` : ''}
-            ${contentElementList ? `<strong>[내용]</strong>:
+            ${contentElementList ? `<strong class="text-sm">[내용]</strong>:
                 <ul>
                 ${contentElementList.join("")}
                 </ul>` : ''}
-            ${resultElementList ? `<strong>[결과]</strong>:
+            ${resultElementList ? `<strong class="text-sm" >[결과]</strongc>:
                 <ul>
                 ${resultElementList.join("")}
                 </ul>` : ''}
