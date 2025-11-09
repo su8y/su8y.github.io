@@ -21,6 +21,7 @@ async function fetchContentAndRender(lang) {
     const data = await response.json();
     console.log(data)
     renderSummary(data.summary)
+    renderExperience(data.experiences)
     renderSkills(data.skills)
     renderEducation(data.educations)
 }
@@ -37,12 +38,63 @@ async function fetchContentAndRender(lang) {
 
 function renderSummary(summary) {
     const section = document.getElementById("section-summary")
-    summary.paragraphs.forEach(p=>{
+    summary.paragraphs.forEach(p => {
         const temp = document.createElement('div')
         temp.innerHTML = marked.parse(p)
         section.appendChild(temp.firstElementChild);
     })
 }
+
+/**
+ * @typedef {object} Experience
+ * @property {string} name - 이름
+ * @property {string} role - 이름
+ * @property {string} period - 날짜
+ * @property {string[]} background - 배경
+ * @property {string[]} content - 배경
+ * @property {string[]} result - 배경
+ * @property {string} additional - 배경
+ * @property {string[]} images - 배경
+ */
+
+/**
+ *
+ * @param {Experience[]} experiences
+ */
+function renderExperience(experiences) {
+    const section = document.getElementById("section-experience").querySelector(".timeline-container");
+    experiences.forEach((experience,i)=>{
+        const bgElementList = experience.background && experience.background.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const contentElementList =experience.content && experience.content.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const resultElementList = experience.result && experience.result.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const imageElement = experience.images && createCarousel(i, experience.images);
+
+        const temp = document.createElement('div');
+        temp.innerHTML = `
+        <div class="work-item ${i === 0 ? 'current' : ''}">
+            <h3>${experience.name}</h3>
+            <p>${experience.role} (${experience.period})</p>
+            ${imageElement ? imageElement : ''}
+            ${bgElementList ? `<strong>[배경]</strong>:
+                <ul>
+                ${bgElementList.join("")}
+                </ul>` : ''}
+            ${contentElementList ? `<strong>[내용]</strong>:
+                <ul>
+                ${contentElementList.join("")}
+                </ul>` : ''}
+            ${resultElementList ? `<strong>[결과]</strong>:
+                <ul>
+                ${resultElementList.join("")}
+                </ul>` : ''}
+            
+        </div>
+        `
+        section.appendChild(temp.firstElementChild);
+    })
+
+}
+
 /**
  * @typedef {object} Skill
  * @property {string} name - 기술 스택의 이름
@@ -82,7 +134,7 @@ function renderSkills(skills) {
  */
 function renderEducation(educations) {
     const section = document.getElementById("section-education")
-    educations.forEach(education=>{
+    educations.forEach(education => {
         const temp = document.createElement("div");
         temp.innerHTML = `
             <div class="education">
