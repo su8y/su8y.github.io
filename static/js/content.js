@@ -13,7 +13,6 @@
 const languageChangeEventListener = (event) => {
     const selectedLanguage = event.target.value;
     localStorage.setItem('language', selectedLanguage);
-    console.log(`HI${selectedLanguage}`)
     applyTranslations();
     window.location.reload();
 }
@@ -49,9 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageSelect = document.getElementById('language-select');
 
     languageSelect.addEventListener('change', languageChangeEventListener);
-    fetchContentAndRender(lang);
-    applyTranslations()
-    languageSelect.value = localStorage.getItem('language') || 'ko';
+    languageSelect.value = lang
+    fetchContentAndRender(lang).then(()=>{
+        applyTranslations()
+    })
 });
 
 async function fetchContentAndRender(lang) {
