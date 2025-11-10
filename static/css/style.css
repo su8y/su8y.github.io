@@ -205,6 +205,10 @@
     color: var(--text-color);
     display: block;
 }
+.work-item p {
+    margin-bottom: 7px;
+    line-height: 1.3;
+}
 
 .work-item p > span {
     font-size: 0.9rem;
@@ -214,8 +218,10 @@
 }
 
 .work-item img {
-    max-width: 70%;
+    max-width: 100%;
+    object-fit: cover;
     height: auto;
+    max-height: 55vh;
     display: block;
     margin: 0 auto 16px auto;
 }
