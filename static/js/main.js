@@ -22,6 +22,7 @@ import * as Constant from './constant.js';
     if (savedFontSize) {
         fontSizeSelect.value = savedFontSize;
         document.documentElement.style.fontSize = `${savedFontSize}px`;
+        document.documentElement.style.setProperty('--base-font-size', `${savedFontSize}px`);
     }
 
     themeToggleButton.addEventListener('click', themeChangeEventListener);
