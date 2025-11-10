@@ -1,5 +1,10 @@
 import {darkMapStyleObject, lightMapStyleObject} from "./layer.js";
-import {fontSizeChangeEventListener, themeChangeEventListener, mapToggleEventListener} from './theme.js'
+import {
+    fontSizeChangeEventListener,
+    themeChangeEventListener,
+    mapToggleEventListener,
+    languageChangeEventListener
+} from './theme.js'
 import * as Constant from './constant.js';
 
 (() => {

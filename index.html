@@ -25,6 +25,10 @@
     <div class="controls">
         <button id="map-toggle-btn">📄</button>
         <button id="theme-toggle-btn">☀️</button>
+        <select id="language-select" style="border: none;">
+            <option data-i18n="ko" value="ko" selected>한국어</option>
+            <option data-i18n="en" value="en">영어</option>
+        </select>
         <select id="font-size-select">
             <option value="10">10px</option>
             <option value="12">12px</option>
@@ -39,8 +43,8 @@
 <main class="resume-container">
     <section class="section header-section">
         <div class="contact-info">
-            <h1>배수아</h1>
-            <span class="job-title">Backend Developer</span>
+            <h1 data-i18n="name">배수아</h1>
+            <span class="job-title" data-i18n="job_title">Backend Developer</span>
 
             <p>
                 <a href="tel:+821056990138">Tel: (+82)10-5699-0138</a> |
@@ -55,33 +59,33 @@
     </section>
 
     <section class="section summary-section" id="section-summary">
-        <h2 class="section-title">요약</h2>
+        <h2 class="section-title" data-i18n="section_summary_title">요약</h2>
         <!-- Section Summary -->
     </section>
 
 
     <section class="section" id="section-experience">
-        <h2 class="section-title">업무 경험</h2>
+        <h2 class="section-title" data-i18n="section_experience_title">업무 경험</h2>
         <div class="timeline-container">
         <!-- Section Experience-->
         </div>
     </section>
 
     <section class="section" id="section-skill">
-        <h2 class="section-title">기술 스택</h2>
+        <h2 class="section-title" data-i18n="section_skill_title">기술 스택</h2>
         <!-- Skill section -->
     </section>
 
 
   <section class="section" id="section-other">
-    <h2 class="section-title">기타 활동</h2>
+    <h2 class="section-title" data-i18n="section_other_title">기타 활동</h2>
     <div class="other-activities">
         <!-- Section Other Experience-->
     </div>
   </section>
 
   <section class="section" id="section-education">
-    <h2 class="section-title">교육 및 자격증</h2>
+    <h2 class="section-title" data-i18n="section_education_title">교육 및 자격증</h2>
     <!-- Section Education-->
   </section>
 

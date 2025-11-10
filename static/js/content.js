@@ -9,8 +9,49 @@
  * @property {string?} description - 설명
  */
 
+
+const languageChangeEventListener = (event) => {
+    const selectedLanguage = event.target.value;
+    localStorage.setItem('language', selectedLanguage);
+    console.log(`HI${selectedLanguage}`)
+    applyTranslations();
+    window.location.reload();
+}
+
+async function loadLanguageData() {
+    const lang = localStorage.getItem('language')
+    const response = await fetch(`${lang}.json`);
+    return response.json();
+}
+
+async function applyTranslations() {
+    const translations = await loadLanguageData();
+
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+        const key = element.getAttribute('data-i18n');
+        const translation = translations[key];
+
+        if (translation) {
+            if (element.tagName === 'TITLE') {
+                document.title = translation;
+            } else if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                element.placeholder = translation;
+            } else {
+                element.textContent = translation;
+            }
+        }
+    });
+
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    fetchContentAndRender('ko');
+    const lang = localStorage.getItem("language") || localStorage.setItem("language", "ko");
+    const languageSelect = document.getElementById('language-select');
+
+    languageSelect.addEventListener('change', languageChangeEventListener);
+    fetchContentAndRender(lang);
+    applyTranslations()
+    languageSelect.value = localStorage.getItem('language') || 'ko';
 });
 
 async function fetchContentAndRender(lang) {
@@ -76,15 +117,15 @@ function renderExperience(experiences) {
             <h3 class="text-lg">${experience.name}</h3>
             <span>${experience.role} (${experience.period})</span>
             ${imageElement ? imageElement : ''}
-            ${bgElementList ? `<strong class="text-sm">[배경]</strong>:
+            ${bgElementList ? `[<strong class="text-sm" data-i18n="background">배경</strong>]:
                 <ul>
                 ${bgElementList.join("")}
                 </ul>` : ''}
-            ${contentElementList ? `<strong class="text-sm">[내용]</strong>:
+            ${contentElementList ? `[<strong class="text-sm" data-i18n="content">내용</strong>]:
                 <ul>
                 ${contentElementList.join("")}
                 </ul>` : ''}
-            ${resultElementList ? `<strong class="text-sm" >[결과]</strongc>:
+            ${resultElementList ? `[<strong class="text-sm" data-i18n="result">결과</strong>]:
                 <ul>
                 ${resultElementList.join("")}
                 </ul>` : ''}
