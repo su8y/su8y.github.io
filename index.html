@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -7,7 +8,7 @@
 
     <link href="https://fonts.googleapis.com" rel="preconnect">
     <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
-    <link href="lib/maplibre/maplibre-gl.css" rel="stylesheet"/>
+    <link href="lib/maplibre/maplibre-gl.css" rel="stylesheet" />
     <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">
     <script src="lib/maplibre/maplibre-gl.js"></script>
     <script src="lib/geoport/geoport.umd.js"></script>
@@ -17,83 +18,85 @@
     <link href="static/css/base.css" rel="stylesheet">
     <link href="static/css/style.css" rel="stylesheet">
     <link href="static/css/map.css" rel="stylesheet">
+
 <body>
-<div class="map-container" id="mapContainer" style="z-index: -1">
-    <div class="map" id="map"></div>
-</div>
-<header>
-    <div class="controls">
-        <button id="map-toggle-btn">📄</button>
-        <button id="theme-toggle-btn">☀️</button>
-        <select class="custom-select" id="language-select" style="border: none;">
-            <option data-i18n="ko" value="ko" selected>한국어</option>
-            <option data-i18n="en" value="en">영어</option>
-        </select>
-        <select class="custom-select" id="font-size-select">
-            <option value="10">10px</option>
-            <option value="12">12px</option>
-            <option value="14">14px</option>
-            <option value="16">16px</option>
-            <option value="18">18px</option>
-        </select>
-
+    <div class="map-container" id="mapContainer" style="z-index: -1">
+        <div class="map" id="map"></div>
     </div>
-</header>
+    <header>
+        <div class="controls">
+            <button id="map-toggle-btn">📄</button>
+            <button id="theme-toggle-btn">☀️</button>
+            <select class="custom-select" id="language-select" style="border: none;">
+                <option data-i18n="ko" value="ko" selected>한국어</option>
+                <option data-i18n="en" value="en">영어</option>
+            </select>
+            <select class="custom-select" id="font-size-select">
+                <option value="10">10px</option>
+                <option value="12">12px</option>
+                <option value="14">14px</option>
+                <option value="16">16px</option>
+                <option value="18">18px</option>
+            </select>
 
-<main class="resume-container">
-    <section class="section header-section">
-        <div class="contact-info">
-            <h1 data-i18n="name">배수아</h1>
-            <span class="job-title" data-i18n="job_title">Backend Developer</span>
-
-            <p>
-                <a href="tel:+821056990138">Tel: (+82)10-5699-0138</a> |
-                <a href="mailto:bsa0530@gmail.com">bsa0530@gmail.com</a> |
-                <span>
-          <a aria-label="GitHub Profile" href="https://github.com/su8y" target="_blank">
-            <img alt="설명 문구" height="17" id='github-icon' src="assets/images/github-mark.svg" width="17"> su8y
-          </a>
-        </span> |
-                <span><a href="https://suby.tistory.com/" target="_blank">Blog</a></span></p>
         </div>
-    </section>
+    </header>
 
-    <section class="section summary-section" id="section-summary">
-        <!-- Section Summary -->
-    </section>
+    <main class="resume-container">
+        <section class="section header-section">
+            <div class="contact-info">
+                <h1 data-i18n="name">배수아</h1>
+                <span class="job-title" data-i18n="job_title">Backend Developer</span>
+
+                <p>
+                    <a href="tel:+821056990138">Tel: (+82)10-5699-0138</a> |
+                    <a href="mailto:bsa0530@gmail.com">bsa0530@gmail.com</a> |
+                    <span>
+                        <a aria-label="GitHub Profile" href="https://github.com/su8y" target="_blank">
+                            <img alt="설명 문구" height="17" id='github-icon' src="assets/images/github-mark.svg"
+                                width="17"> su8y
+                        </a>
+                    </span> |
+                    <span><a href="https://suby.tistory.com/" target="_blank">Blog</a></span>
+                </p>
+            </div>
+        </section>
+        <section id="section-hello">
+            <!-- Section Hello -->
+        </section>
+        <section class="section summary-section" id="section-summary">
+            <h2 class="section-title">Server, Backend Developer</h2>
+
+            <!-- Section Summary -->
+        </section>
+        <section class="section" id="section-experience">
+            <h2 class="section-title" data-i18n="section_experience_title">업무 경험</h2>
+            <div class="timeline-container">
+                <!-- Section Experience-->
+            </div>
+        </section>
+        <section class="section" id="section-other">
+            <h2 class="section-title" data-i18n="section_other_title">기타 활동</h2>
+            <div class="other-activities">
+                <!-- Section Other Experience-->
+            </div>
+        </section>
+        <section class="section" id="section-skill">
+            <h2 class="section-title" data-i18n="section_skill_title">기술 스택</h2>
+            <!-- Skill section -->
+        </section>
+        <section class="section" id="section-education">
+            <h2 class="section-title" data-i18n="section_education_title">교육 및 자격증</h2>
+            <!-- Section Education-->
+        </section>
 
 
-    <section class="section" id="section-experience">
-        <h2 class="section-title" data-i18n="section_experience_title">업무 경험</h2>
-        <div class="timeline-container">
-        <!-- Section Experience-->
-        </div>
-    </section>
+    </main>
 
-    <section class="section" id="section-skill">
-        <h2 class="section-title" data-i18n="section_skill_title">기술 스택</h2>
-        <!-- Skill section -->
-    </section>
-
-
-  <section class="section" id="section-other">
-    <h2 class="section-title" data-i18n="section_other_title">기타 활동</h2>
-    <div class="other-activities">
-        <!-- Section Other Experience-->
-    </div>
-  </section>
-
-  <section class="section" id="section-education">
-    <h2 class="section-title" data-i18n="section_education_title">교육 및 자격증</h2>
-    <!-- Section Education-->
-  </section>
-
-
-</main>
-
-<script src="static/js/carousel.js"></script>
-<script src="static/js/content.js"></script>
-<script src="apikey.js"></script>
-<script src="static/js/main.js" type="module"></script>
+    <script src="static/js/carousel.js"></script>
+    <script src="static/js/content.js"></script>
+    <script src="apikey.js"></script>
+    <script src="static/js/main.js" type="module"></script>
 </body>
+
 </html>

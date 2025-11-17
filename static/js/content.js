@@ -60,13 +60,23 @@ async function fetchContentAndRender(lang) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+    renderHello(data.hello);
     renderSummary(data.summary)
     renderExperience(data.experiences)
     renderOtherExperience(data['other-experiences'])
-    renderSkills(data.skills)
+    renderSkillCategories(data.skills)
     renderEducation(data.educations)
 }
 
+
+function renderHello(hello) {
+    const section = document.getElementById("section-hello")
+    hello.forEach(p => {
+        const temp = document.createElement('div')
+        temp.innerHTML = marked.parse(p)
+        section.appendChild(temp.firstElementChild);
+    })
+}
 /**
  * @typedef {object} Summary
  * @property {DescriptionContent} paragraphs - 기술 스택의 이름
@@ -144,15 +154,17 @@ function renderOtherExperience(otherExperiences) {
     const section = document.getElementById("section-other").querySelector(".other-activities");
     otherExperiences.forEach((experience,i)=>{
         const bgElementList = experience.background && experience.background.map(e=>(`<li>${marked.parse(e)}</li>`));
-        const contentElementList =experience.content && experience.content.map(e=>(`<li>${marked.parse(e)}</li>`));
+        const contentElementList =experience.content && experience.content.map(e=>(`${marked.parse(e)}`));
         const resultElementList = experience.result && experience.result.map(e=>(`<li>${marked.parse(e)}</li>`));
         const imageElement = experience.images && createCarousel(`other-${i}`, experience.images);
 
         const temp = document.createElement('div');
         temp.innerHTML = `
         <div class="activity-item">
-            <h3 class="text-lg">${experience.name}</h3>
-            <p class="text-sm">${experience.role} (${experience.period})</p>
+            <div style="display: flex; gap:3px;">
+                <h3 class="text-lg">${experience.name}</h3>
+                <p class="text-sm">${experience.role} (${experience.period})</p>
+            </div>
             ${imageElement ? imageElement : ''}
             ${bgElementList ? `
                 <ul>
@@ -175,31 +187,56 @@ function renderOtherExperience(otherExperiences) {
 }
 
 /**
- * @typedef {object} Skill
- * @property {string} name - 기술 스택의 이름
- * @property {string} description - 해당 기술 스택에 대한 설명.
- */
-
-/**
- * 이 함수는 기술 스택 목록을 처리합니다.
+ * 이 함수는 기술 스택 객체를 받아 카테고리별로 렌더링합니다.
+ * (CSS flex 레이아웃에 맞게 HTML 구조 생성)
  *
- * @param {Skill[]} skills - Skill 객체들의 배열.
+ * @param {object} skillCategories - { backend: Skill[], DevOps: Skill[] ... } 형태의 객체
  */
-function renderSkills(skills) {
-    const skillSection = document.getElementById("section-skill")
+function renderSkillCategories(skillCategories) {
+    const skillSection = document.getElementById("section-skill");
 
-    skills.forEach(skill => {
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = `
-            <div class="skill-group">
-                <h3 class="text-lg">${skill.name}</h3>
-                <p>${skill.description}</p>
-            </div>
-        `
-        skillSection.appendChild(tempContainer.firstElementChild)
-    })
+    // 1. 카테고리 객체를 순회합니다 (예: ["backend", [{...},...]] )
+    for (const [categoryName, skills] of Object.entries(skillCategories)) {
+        
+        // 2. 카테고리 전체를 감싸는 .skill-category-container 생성 (Flex 부모)
+        const categoryContainer = document.createElement('div');
+        categoryContainer.className = 'skill-category-container';
 
+        // 3. 왼쪽 카테고리명(.skill-category-name) 생성
+        const categoryNameDiv = document.createElement('h5');
+        categoryNameDiv.textContent = categoryName;
+        categoryNameDiv.className = "skill-category-name"
+        categoryContainer.appendChild(categoryNameDiv); // (Flex 자식 1)
 
+        // 4. 오른쪽 기술 목록(.skill-list)을 감싸는 컨테이너 생성
+        const skillListDiv = document.createElement('div');
+        skillListDiv.className = 'skill-list';
+
+        // 5. 개별 기술(.skill-item)을 만들어서 skill-list에 추가
+        skills.forEach(skill => {
+            const skillItemDiv = document.createElement('div');
+            skillItemDiv.className = 'skill-item';
+
+            // 설명(description)이 있을 때만 <p> 태그 생성
+            const descriptionHtml = skill.description 
+                ? `<small>${marked.parse(skill.description)}</small>`
+                : '';
+
+            skillItemDiv.innerHTML = `
+                <h6>${skill.name}</h6>
+                ${descriptionHtml}
+            `;
+            
+            // skill-list에 개별 기술 추가
+            skillListDiv.appendChild(skillItemDiv); 
+        });
+
+        // 6. 완성된 skill-list를 category-container에 추가 (Flex 자식 2)
+        categoryContainer.appendChild(skillListDiv);
+
+        // 7. 완성된 카테고리 그룹을 최상위 섹션에 추가
+        skillSection.appendChild(categoryContainer);
+    }
 }
 
 /**

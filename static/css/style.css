@@ -2,6 +2,8 @@
 /* 1. Global Styles & Variables                    */
 /* =============================================== */
 
+/* :root, body 등 전역 변수 및 스타일이 위치합니다. */
+
 
 /* =============================================== */
 /* 2. Main Layout & Container                      */
@@ -118,7 +120,7 @@
 }
 
 /* =============================================== */
-/* 4. Section Styles                               */
+/* 4. Section Styles (Common)                      */
 /* =============================================== */
 .section {
     padding: 30px 0;
@@ -137,13 +139,6 @@
     display: inline-block;
 }
 
-.summary-section p,
-.skill-group p,
-.work-item p,
-.activity-item p {
-    color: var(--secondary-text-color);
-}
-
 .result {
     font-style: normal;
     font-weight: 500;
@@ -153,6 +148,33 @@
     border-left: 3px solid var(--primary-color);
     opacity: 0.9;
 }
+
+/* [REFACTORED]
+- 공통 아이템 제목 스타일을 그룹화했습니다.
+- .work-item h3, .activity-item h3, .education h3 에 적용됩니다.
+*/
+.work-item h3,
+.activity-item h3,
+.education h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    font-weight: 600;
+}
+
+/* [REFACTORED]
+- 공통 본문 단락 스타일을 그룹화했습니다.
+- .summary-section p, .activity-item p, .education p 에 적용됩니다.
+- (참고: .work-item p 와 .skill-item p 는 고유 스타일이 있어 제외)
+*/
+.summary-section p,
+.activity-item p,
+.education p {
+    color: var(--secondary-text-color);
+    margin-top: 0;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
 
 /* =============================================== */
 /* 5. Work Experience Timeline                     */
@@ -194,11 +216,8 @@
     transition: all 0.3s ease;
 }
 
-.work-item h3 {
-    font-size: 1.2rem;
-    margin-bottom: 4px;
-    font-weight: 600;
-}
+/* .work-item h3 는 Section 4의 공통 스타일로 이동했습니다. */
+
 .work-item span,
 .work-item p {
     font-size: 0.9rem;
@@ -231,6 +250,7 @@
     border-color: var(--primary-color);
     transform: scale(1.1);
     background-color: var(--primary-color);
+    animation: pulse 2s infinite;
 }
 .work-item.current h3 {
     color: var(--primary-color);
@@ -248,67 +268,32 @@
     70% { box-shadow: 0 0 0 10px rgba(49, 130, 246, 0); }
     100% { box-shadow: 0 0 0 0 rgba(49, 130, 246, 0); }
 }
-.work-item.current::before {
-    animation: pulse 2s infinite;
-}
+
 
 /* =============================================== */
-/* 6. Skills Section (Card Layout)                 */
+/* 6. Skills Section (Flex Layout)                 */
 /* =============================================== */
-/* =============================================== */
-/* 6. Skills Section (Card & Tag Layout)           */
-/* =============================================== */
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
+/* [REFACTORED]
+- 기존의 Card layout (.skills-container, .skill-group) 스타일을 제거했습니다.
+- 요청하신 Flex layout (.skill-category-container)으로 통합 정리했습니다.
+*/
 
-.skill-group {
-    padding: 10px;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.skill-group > h4,
-.skill-group > p {
-    margin: 0;
-    padding: 0
-}
-
-.skill-title {
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-top: 0;
-    margin-bottom: 5px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
+/* 스킬 아이콘 (공통) */
 .skill-icon {
     width: 24px;
     height: 24px;
 }
 body.dark-mode .skill-icon {
-    /* 어두운 배경에서 아이콘이 잘 보이도록 필터 적용 */
     filter: invert(1) opacity(0.8);
 }
 
-.skill-description {
-    font-size: 0.95rem;
-    color: var(--secondary-text-color);
-    margin-bottom: 16px;
-    flex-grow: 1; /* 카드 높이가 달라도 태그가 항상 아래에 위치하도록 함 */
-}
-
+/* 스킬 태그 (공통) */
 .skill-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    margin-top: 12px; /* .skill-item p 와의 간격 */
 }
-
 .tag {
     display: inline-block;
     padding: 5px 12px;
@@ -320,25 +305,75 @@ body.dark-mode .skill-icon {
     border: 1px solid transparent;
     transition: all 0.2s ease;
 }
-
 .tag:hover {
     transform: translateY(-2px);
     border-color: var(--primary-color);
 }
+
+/* Flex Layout (메인) */
+#section-skill {
+    /* 이 컨테이너는 .section 기본 패딩을 사용합니다. */
+    /* 불필요한 max-width, margin 제거 (부모 .resume-container가 제어) */
+    width: 100%; 
+}
+
+.skill-category-container {
+    display: flex;
+    flex-direction: row; 
+    margin-bottom: 2.5rem; 
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color); /* 테마 변수 사용 */
+}
+.skill-category-container:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.skill-category-name {
+    flex-basis: 130px; 
+    flex-shrink: 0; 
+    padding-right: 1.5rem; 
+    font-size: 1.25rem; 
+    font-weight: 600;
+    color: var(--text-color); /* 색상 변수 적용 */
+}
+
+.skill-list {
+    flex-grow: 1; 
+    display: flex;
+    flex-direction: column; 
+    gap: 1.25rem; 
+}
+
+.skill-item h3 {
+    font-size: 1.125rem; 
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: var(--text-color); /* 색상 변수 적용 */
+}
+
+.skill-item p {
+    color: var(--secondary-text-color); /* [REFACTORED] 변수 사용 */
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0; /* p 태그 기본 마진 제거 */
+}
+
 /* =============================================== */
 /* 7. Other Sections (Activities, Education)       */
 /* =============================================== */
 .activity-item, .education {
     margin-bottom: 24px;
 }
-.activity-item h3, .education h3 {
-    font-size: 1.2rem;
-    margin-bottom: 4px;
-    font-weight: 600;
+.activity-item:last-child, .education:last-child {
+    margin-bottom: 0;
 }
-.activity-item p, .education p {
-    margin-top: 0;
-}
+
+/* [REFACTORED]
+- h3, p 스타일은 Section 4의 공통 스타일로 이동했습니다.
+- 여기서는 각 아이템 컨테이너의 여백만 관리합니다.
+*/
 
 /* =============================================== */
 /* 8. Responsive Design                            */
@@ -366,5 +401,16 @@ body.dark-mode .skill-icon {
     .controls {
         bottom: 15px;
         right: 15px;
+    }
+
+    /* [REFACTORED] 모바일에서 스킬 섹션 레이아웃 변경 */
+    .skill-category-container {
+        flex-direction: column; /* 세로 배치 */
+        gap: 1rem; /* 카테고리명과 리스트 사이 간격 */
+    }
+    .skill-category-name {
+        flex-basis: auto; /* 너비 고정 해제 */
+        padding-right: 0;
+        font-size: 1.1rem; /* 모바일에서 약간 작게 */
     }
 }
