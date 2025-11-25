@@ -23,17 +23,14 @@
   },
   "hello": [
     "반갑습니다.",
-    "도전할 과제를 스스로 찾아내고 해결하는 과정을 즐기며",
-    "혼자가면 빨리가지만, 함께가면 멀리간다는 모토를 가진 백엔드 개발자 배수아입니다."
+    "챌린지를 찾아내고 해결하는 과정을 즐기며 ”함께가면 멀리간다”는 신념을 가진 ",
+    "백엔드 개발자 배수아입니다."
   ],
   "summary": {
     "paragraphs": [
-      "개발을 좋아하는 이유는 단순히 코드를 작성하는 데 있지 않습니다.",
-      "저는 [문제를 정확히 정의하고, 그 본질을 파악해 해결책을 만들어가는 과정](https://github.com/su8y/Algorithm#) 자체에 큰 매력을 느낍니다.",
+      "개발을 좋아하는 이유는  [문제를 정확히 정의하고, 그 본질을 파악해 해결책을 만들어가는 과정](https://github.com/su8y/Algorithm#)에 큰 매력을 느낍니다",
       "새로운 기술을 배울 때도 ‘어떻게(How) 쓰는가’보다 이 기술이 무엇(What)이고, 왜(Why) 등장했는지 그 배경과 목적을 먼저 이해하려고 합니다.",
-      "기술이 가진 철학과 필요성이 보일 때 비로소 올바른 선택과 적용이 가능하다고 믿기 때문입니다.",
-      "최근에는 호기심을 더 넓히기 위해 새로운 업무 영역을 사전에 준비하고 있으며, 동시에 오픈소스 활동이라는 새로운 도전에도 적극적으로 참여하고 있습니다.",
-      "제가 가진 역량을 실제 커뮤니티와 서비스에 기여하며 성장하는 경험을 즐기고 있습니다."
+      "기술이 가진 철학과 필요성이 보일 때 비로소 올바른 선택과 적용이 가능하다고 믿기 때문입니다."
     ]
   },
   "experiences": [
@@ -43,7 +40,7 @@
       "period": "2024년 01월 ~ 현재"
     },
     {
-      "name": "시스템 모니터링 에이전트 구축",
+      "name": "통합 시스템 관제(OAM) 데몬 구축",
       "period": "2025년 01월 ~ 현재",
       "role": "파트 리더",
       "background": [
@@ -68,9 +65,9 @@
       ]
     },
     {
-      "name": "CNN 기반 산불 모니터링 PoC",
+      "name": "CNN 모델 활용 산불 모니터링 PoC(개념검증)",
       "period": "2025년 06월 ~ 2025년 07월",
-      "role": "기획 · 설계 · 개발",
+      "role": "기획, 설계, 개발",
       "background": [
         "CNN 기반(YOLOv8, MobileNet 등) 산불 감지 모델의 ‘개념검증(PoC)’ 및 향후 실서비스 가능성 평가를 목표로 진행했습니다.",
         "당시 CNN 도메인 경험이 전무한 상태에서 새로운 기술적 도전으로 프로젝트를 시작했습니다."
@@ -84,11 +81,6 @@
       ],
       "result": [
         "Repository: https://github.com/su8y/yolov8-fire-smoke-detection",
-        "학습 데이터: [Kaggle smoke fire detection yolo](https://www.kaggle.com/datasets/sayedgamal99/smoke-fire-detection-yolo/data)",
-        "참고 논문: [Low Complexity Forest Fire Detection Based on Improved YOLOv8 Network](https://www.mdpi.com/1999-4907/15/9/1652)",
-        "참고 논문: [Wildfire Identification Based on an Improved MobileNetV3-Small Model](https://www.mdpi.com/1999-4907/15/11/1975)",
-        "Next Step으로는 다양한 산불 감지를 위해서 위성 사진으로의 감지를 해보려고합니다.",
-        "Next Step으로 참고할 논문: [IEEE Artificial Intelligence Techniques for Landslides Prediction Using Satellite Imagery](https://ieeexplore.ieee.org/document/10639391)",
         "기술스택: python, pytorch, yolov8"
       ],
       "images": [
@@ -96,7 +88,7 @@
       ]
     },
     {
-      "name": "사내 개발 프로세스 자동화",
+      "name": "CI/CD 파이프라인 구축",
       "role": "리더",
       "period": "2024년 05월 ~ 현재",
       "background": [
@@ -112,44 +104,29 @@
         "배포 시간 30% 단축 및 주기적 안정적 배포 체계 구축",
         "테스트 커버리지 50% 달성",
         "동료 피드백: “적응이 어렵지 않고 오히려 업무 효율이 크게 늘었습니다.”",
-        "관련 글: https://suby.tistory.com/entry/CICD비효율의굴레를끊어내는-여정"
+        "블로그 포스팅: https://suby.tistory.com/entry/CICD비효율의굴레를끊어내는-여정"
       ],
       "images": [
         "assets/images/project-2/architecture.png"
       ]
     },
     {
-      "name": "차세대 공간정보 관리 지도 웹 애플리케이션 개발",
-      "role": "풀스택 개발",
-      "period": "2024년 01월 ~ 2024년 06월",
+      "name": "IAM(Identity and Access Management) 시스템 & 백오피스 구축",
+      "role": "인증 파트 리드",
+      "period": "2025 08월 ~ 현재",
       "background": [
-        "기존 CS 기반 GIS 편집 툴은 단일 사용자 위주 설계로, 다중 사용자의 실시간 편집 환경에서 충돌이 빈번하게 발생했습니다.",
-        "이를 해결하기 위해 Web 기반 실시간 협업 아키텍처로 전면 재설계가 필요했습니다."
+        "분산된 여러 서비스의 계정 및 권한을 통합적으로 관리하기 위해 인증(Identity) 마이크로서비스와 이를 관리하는 백오피스(Web UI + API)를 구축했습니다."
       ],
       "content": [
-        "GIS Geometry 변경량이 큰 특성상 단순 Optimistic Lock은 충돌 비용이 높아, PostgreSQL SELECT FOR UPDATE 기반 Row Lock 전략을 설계했습니다.",
-        "PostGIS에서 권장하는 Transaction 기반 Topology 관리 구조를 도입해 정합성을 보장했습니다.",
-        "React 기반 사용자 인터랙티브 지도 UI를 구축해 편집 상태 관리 및 사용자 경험을 개선했습니다."
-      ],
-      "result": [
-        "다중 사용자 편집 환경에서 발생하던 충돌 문제를 구조적으로 해결",
-        "Web 환경에서도 안정적인 실시간 협업 편집 UX 제공"
+        "Spring Security 기반의 인증/인가 핵심 기능 개발(로그인, Token 발급·갱신, 세션/토큰 관리) ",
+        "동적 인가 처리 및 계층적 권한 모델 설계, RBAC(Role-Based Access Control) 시스템 구축",
+        "사용자 생애 주기(Life-cycle) 관리, 권한 할당, 접근 로그 & 시스템 오류 로그 적재 시스템을 구축하였습니다."
       ],
       "images": [
-        "assets/images/project-1/architecture.png"
       ]
     }
   ],
   "other-experiences": [
-    {
-      "name": "LensPay 개발",
-      "role": "기획, 설계, 백엔드(파트 리더)",
-      "period": "2025년 09월 ~ 현재",
-      "content": [
-        "서비스 개발 및 배포, 유지보수 작업",
-        "[안내 사이트](http://introduce.lenspay.site)"
-      ]
-    },
     {
       "name": "Open Source Contributions",
       "role": "contributor",
@@ -163,6 +140,15 @@
       ],
       "result": [
         "[WET vs DRY 블로그 작성](https://suby.tistory.com/entry/WET-vs-DRYfeat-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EA%B8%B0%EC%97%AC)"
+      ]
+    },
+    {
+      "name": "LensPay 개발",
+      "role": "기획, 설계, 백엔드(파트 리더)",
+      "period": "2025년 09월 ~ 현재",
+      "content": [
+        "서비스 개발 및 배포, 유지보수 작업",
+        "[안내 사이트](http://introduce.lenspay.site)"
       ]
     },
     {
