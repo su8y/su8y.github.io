@@ -1,6 +1,6 @@
 {
   "header": {
-    "name": "Suah Bae",
+    "name": "Sua Bae",
     "jobTitle": "Backend Developer",
     "contact": {
       "tel": {
@@ -21,166 +21,206 @@
       }
     }
   },
+  "hello": [
+    "Hello,",
+    "I am Sua Bae, a Backend Developer who actively seeks out challenges and enjoys the problem-solving process.",
+    "I strongly believe in the motto, 'If you want to go far, go together.'"
+  ],
   "summary": {
     "paragraphs": [
-      "A 2-year experienced **Backend Developer** focused on continuous learning, growth, and demonstrating strong leadership capabilities.",
-      "Beyond merely writing code, I utilize principles of **Object-Oriented Design** to architect and build flexible, scalable systems with future maintainability and extensibility in mind.",
-      "**I thrive in highly concurrent and non-blocking development environments.** To establish an efficient development pipeline, I successfully spearheaded the adoption of a structured development process, enhancing system stability and automating resource-intensive deployment tasks, thereby **leading** the improvement of the in-house development culture.",
-      "**Driven by the belief that 'if you want to go fast, go alone; if you want to go far, go together,'** I champion the continuous growth of the entire team. I focus on achieving sustainable code through comprehensive testing, clear design documentation, and thorough code reviews, ensuring that the entire team can understand and contribute. I believe this collaborative approach is the most effective way to enhance both team productivity and service quality.",
-      "Leveraging a **quick learning ability in new domains**, I have expanded my experience beyond backend development to include frontend and AI/ML fields. I have demonstrated adaptability by training CNN models and optimizing model serving APIs to achieve a **180% increase in TPS**."
+      "I am passionate about development because I find great appeal in the process of [accurately defining problems, grasping their essence, and crafting solutions](https://github.com/su8y/Algorithm#).",
+      "When learning new technologies, I prioritize understanding 'What' it is and 'Why' it emerged—its background and purpose—over merely 'How' to use it.",
+      "I believe that understanding the philosophy and necessity behind a technology is essential for making the right choices and applying it correctly."
     ]
   },
   "experiences": [
     {
-      "name": "JBT Crop @ Core Development Team",
-      "role": "Backend-Developer",
+      "name": "JBT Crop · Core Development Team",
+      "role": "Backend Developer",
       "period": "Jan 2024 ~ Present"
     },
     {
-      "name": "System Monitoring Agent Development",
+      "name": "Development of Integrated System Monitoring (OAM) Daemon",
       "period": "Jan 2025 ~ Present",
       "role": "Part Leader",
       "background": [
-        "In an environment where numerous processes on 16 distributed servers across 4 data centers operate organically, faults were often recognized only through 'customer inquiries,' leading to excessive time spent on root cause analysis.",
-        "There was a critical need to optimize the time spent monitoring 'why,' 'how,' and 'for how long' a problem persisted."
+        "In a distributed environment with 16 servers across 4 data centers, system failures were often discovered late through customer inquiries.",
+        "It took excessive time to identify the cause, method, and duration of failures, leading to a decline in service reliability.",
+        "A key challenge was establishing a stable event delivery system that prevents data loss even during network outages.",
+        "The goal was to drastically reduce Mean Time To Detect (MTTD) and Mean Time To Repair (MTTR)."
       ],
       "content": [
-        "**Fault Management:** Real-time detection of abnormal events, including service interruption, hardware failure, network disconnection, and application errors.",
-        "**Failover:** Developed a system for reloading core processes upon error or termination to ensure continuity.",
-        "**Critical Property Management:** Developed an agent to monitor and detect mismatches in mission-critical properties and configuration files."
+        "Designed a mutual surveillance architecture: Implemented a cross-VM Health Check structure to achieve immediate failure detection without Single Points of Failure (SPOF).",
+        "Built a Failover System: Designed automatic reloading upon detecting critical process errors, significantly improving MTTR.",
+        "Developed an Integrity Monitoring Agent: Prevented deployment-related failures by detecting real-time changes and mismatches in core configuration files (Properties).",
+        "Identified event loss issues during network disconnects and introduced an Event Queue (Failed Query) mechanism to queue failed events and automatically retransmit them upon recovery."
       ],
       "result": [
-        "Achieved **99.9% uptime** for servers handling **6000+ tps** from 300,000 users.",
-        "Reduced service interruption and incident alarm failures to **less than 5%** (critical network alarms still represent a known area for improvement)."
+        "Achieved 99.9% availability in a server environment processing 6,000+ TPS with 300,000 users.",
+        "Maintained an event delivery failure rate of under 5% even in unstable network environments."
       ],
       "images": [
-        "assets/images/project-3/architecture.png"
+        "assets/images/project-3/architecture.png",
+        "assets/images/project-3/module.png"
       ]
     },
     {
-      "name": "Internal Development Process Automation",
+      "name": "Wildfire Monitoring PoC using CNN Models",
+      "period": "Jun 2025 ~ Jul 2025",
+      "role": "Planning, Design, Development",
+      "background": [
+        "Aimed to validate the concept (PoC) of CNN-based (YOLOv8, MobileNet, etc.) wildfire detection models and evaluate feasibility for actual service.",
+        "Started the project as a new technical challenge with no prior domain experience in CNNs."
+      ],
+      "content": [
+        "Prioritized acquiring minimum viable knowledge to request mentoring from AI experts.",
+        "Learned the entire process of CNN model implementation and serving within a short period through active mentoring and research.",
+        "Improved accuracy to over 70% by repeating model comparison and hyperparameter tuning to solve detection performance issues.",
+        "Researched various architectures to address serving API TPS issues, ultimately improving TPS by over 180% through structural optimization."
+      ],
+      "result": [
+        "Repository: https://github.com/su8y/yolov8-fire-smoke-detection",
+        "Tech Stack: Python, PyTorch, YOLOv8"
+      ],
+      "images": [
+        "assets/images/fire-detection/poc.png"
+      ]
+    },
+    {
+      "name": "Establishment of CI/CD Pipeline",
       "role": "Leader",
       "period": "May 2024 ~ Present",
       "background": [
-        "Recurring issues such as frequent deployment failures and errors, slow development cycles, repetitive manual deployment tasks, technical debt, and workflow bottlenecks."
+        "The goal was to resolve structural inefficiencies across the development process, such as frequent deployment failures, repetitive manual work, and slowdowns due to technical debt."
       ],
       "content": [
-        "Researched team-level development methodologies within the company.",
-        "Analyzed bottlenecks in the existing manual deployment process and collected improvement requirements through interviews with fellow developers.",
-        "Designed and implemented a CI/CD pipeline architecture using GitLab Native (GitLab Runner, GitLab Image Registry, k8s) based on the company's existing GitLab environment."
+        "Analyzed team-level development processes and collected improvement requirements through colleague interviews prior to adoption.",
+        "Designed and built a GitLab Native CI/CD pipeline based on GitLab Runner, GitLab Image Registry, and Kubernetes.",
+        "Automated the Build-Test-Deploy process and improved development efficiency by establishing test environments and defining development conventions."
       ],
       "result": [
-        "Deployment time reduced by **30%**, and a periodic deployment environment was successfully established.",
-        "Achieved **50% test coverage**.",
-        "Continuously received positive feedback from colleagues regarding increased work efficiency.",
-        "[Retrospective Blog Post](https://suby.tistory.com/entry/CICD%EB%B9%84%ED%9A%A8%EC%9C%A8%EC%9D%98%EA%B5%B4%EB%A0%80%EB%A5%BC%EB%81%8A%EC%96%B4%EB%82%B4%EB%8A%94-%EC%97%AC%EC%A0%95)"
+        "Led the improvement of in-house development productivity.",
+        "Reduced deployment time by 30% and established a periodic, stable deployment system.",
+        "Achieved 50% test coverage.",
+        "Peer Feedback: 'Adapting wasn't difficult, and work efficiency has increased significantly.'",
+        "Blog Post: https://suby.tistory.com/entry/CICD비효율의굴레를끊어내는-여정"
       ],
       "images": [
         "assets/images/project-2/architecture.png"
       ]
     },
     {
-      "name": "Next-Generation Geospatial Data Management Web Application Development",
-      "role": "Full-stack Developer",
-      "period": "Jan 2024 ~ June 2024",
+      "name": "Development of IAM (Identity and Access Management) System & Back-office",
+      "role": "Auth Part Lead",
+      "period": "Aug 2025 ~ Present",
       "background": [
-        "Need for real-time access for multiple users in the existing client-server (CS) geospatial data editing tool.",
-        "Increased necessity for organic, real-time interaction events (CRUD, Merge, Split, etc.) between geospatial features via a web-based migration."
+        "Built an Identity microservice and a management back-office (Web UI + API) to integratedly manage accounts and permissions for various distributed services."
       ],
       "content": [
-        "Designed and developed data models and APIs for geospatial feature editing and real-time collaboration.",
-        "Implemented a **Lock Mechanism** to resolve data inconsistency issues during real-time collaboration.",
-        "Developed a user-interactive map UI using **React.js** to manage feature states and build user-interactive pages."
+        "Developed core authentication/authorization functions based on Spring Security (Login, Token issuance/refresh, Session/Token management).",
+        "Designed a dynamic authorization process and hierarchical permission model; built an RBAC (Role-Based Access Control) system.",
+        "Established systems for user lifecycle management, permission assignment, and logging of access & system errors."
       ],
       "images": [
-        "assets/images/project-1/architecture.png"
       ]
     }
   ],
   "other-experiences": [
     {
+      "name": "Open Source Contributions",
+      "role": "Contributor",
+      "period": "Jul 2025 ~ Present",
+      "content": [
+        "**[apache/gravitino](https://github.com/apache/gravitino) (4 Features)**<br/>",
+        "Correct URL encode path in `alterModelVersion` in `GenericModelCatalog.java` [#7694](https://github.com/apache/gravitino/pull/7694)",
+        "Missing `@Override` annotation to the `hashCode` method of `SparkJobTemplate` [#7653](https://github.com/apache/gravitino/pull/7653)",
+        "Remove duplicate owner in CLI [#7651](https://github.com/apache/gravitino/pull/7651)",
+        "Add error handling and absolute path resolution in gcli.sh [#7620](https://github.com/apache/gravitino/pull/7620)"
+      ],
+      "result": [
+        "[Blog Post: WET vs DRY (feat. Open Source Contribution)](https://suby.tistory.com/entry/WET-vs-DRYfeat-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EA%B8%B0%EC%97%AC)"
+      ]
+    },
+    {
       "name": "LensPay Development",
       "role": "Planning, Design, Backend (Part Leader)",
       "period": "Sep 2025 ~ Present",
       "content": [
-        "Service development, deployment, and maintenance.",
-        "[Information Site](http://introduce.lenspay.site)"
+        "Service development, deployment, and maintenance tasks.",
+        "[Introduction Site](http://introduce.lenspay.site)"
       ]
     },
     {
-      "name": "Apache Gravitino OpenSource Contributor",
-      "role": "Contributor",
-      "period": "Jul 2025 ~ Present",
-      "content": [
-        "Improved test code for the Apache Gravitino CLI module.",
-        "[Blog Post on WET vs DRY](https://suby.tistory.com/entry/WET-vs-DRYfeat-%EC%98%A4%ED%94%88%EC%86%8C%EC%8A%A4%EA%B8%B0%EC%97%AC)"
-      ]
-    },
-    {
-      "name": "CNN-based Forest Fire Monitoring",
-      "role": "Solo Developer",
-      "period": "June 2025 ~ July 2025",
-      "content": [
-        "Data labeling and preparation.",
-        "CNN model training and research.",
-        "Optimized the API serving server to achieve a **180% increase in TPS** compared to the baseline model.",
-        "[Project GitHub](https://github.com/su8y/yolov8-fire-smoke-detection)"
-      ]
-    },
-    {
-      "name": "Algorithm Study Group",
+      "name": "Algorithm Study",
       "role": "Study Leader",
       "period": "Aug 2022 ~ Jan 2024",
       "content": [
-        "Operated online/offline study groups to expose members to diverse algorithm problems and share problem-solving perspectives.",
-        "Led 4 weeks of online studies, resulting in a total of 500+ problem completions and reviews.",
-        "[Project GitHub](https://github.com/su8y/yolov8-fire-smoke-detection)"
+        "Operated on/offline study groups to share problem-solving approaches for various algorithm problems.",
+        "Conducted a 4-week online study, solving and reviewing over 500 problems in total.",
+        "[Study Github](https://github.com/PS-ATTACK/PS-ATTACK)"
       ]
     }
   ],
-  "skills": [
-    {
-      "name": "Java & Spring",
-      "description": "I have a deep understanding of Object-Oriented Design principles, implementing flexible and scalable architectures, and building robust, testable systems based on **TDD** (Test-Driven Development)."
-    },
-    {
-      "name": "Typescript & React.js",
-      "description": "Built user interfaces (UI) for GIS map applications, demonstrating proficiency in component-based development and state management to construct dynamic UIs."
-    },
-    {
-      "name": "C/C++",
-      "description": [
-        "Contributed to the development of a system monitoring agent for a system valued over 10 billion KRW (approx. 7.3 million USD), focusing on stable logic implementation.",
-        "Specifically, provided support for careful design in resource-constrained environments and built a **Failover** mechanism to ensure service continuity during failures."
-      ]
-    },
-    {
-      "name": "Python & Pytorch",
-      "description": [
-        "Capable of rapid prototyping for problem-solving.",
-        "Experienced in research and optimization of CNN-based forest fire monitoring models, utilizing these skills for the development, training, and evaluation of machine learning models, and independently driving **PoC** (Proof of Concept) development for ML model serving."
-      ]
-    },
-    {
-      "name": "PostgresSql",
-      "description": "Deeply understand the core principles of relational databases, utilizing this knowledge for effective data modeling and efficient query writing."
-    },
-    {
-      "name": "Docker & Kubernetes",
-      "description": "As part of the [Journey to End Inefficiency] project, I utilize these technologies, integrated with a CI/CD pipeline, to automate building, testing, and deployment, thereby improving development productivity and contributing to quality enhancement through effective test environment setup."
-    }
-  ],
+  "skills": {
+    "backend": [
+      {
+        "name": "Java 8, Java 11, Java 17",
+        "description": "Deep understanding of OOP principles to implement flexible and scalable architectures. Capable of building robust, testable systems based on TDD."
+      },
+      {
+        "name": "Spring Boot 2.7.x, 3.2.x, Spring MVC, Spring Security, Spring Data JPA (Hibernate), QueryDSL",
+        "description": "Understanding and utilizing the core philosophy of Spring. Proficient in implementing authentication/authorization logic via Spring Security."
+      },
+      {
+        "name": "JUnit5, Mockito, Swagger",
+        "description": "Proficient in writing TDD-based unit tests using JUnit5 and Mockito."
+      }
+    ],
+    "DevOps": [
+      {
+        "name": "Ubuntu 18.04"
+      },
+      {
+        "name": "GCP (Compute Engine, Cloud Storage)"
+      },
+      {
+        "name": "GitLab Runner (CI/CD), GitHub Actions"
+      },
+      {
+        "name": "Nginx"
+      },
+      {
+        "name": "PostgreSQL"
+      }
+    ],
+    "Collaboration & Tools": [
+      {
+        "name": "Slack, Discord"
+      },
+      {
+        "name": "IntelliJ IDEA, VS Code, Vim"
+      },
+      {
+        "name": "Git"
+      }
+    ],
+    "ETC": [
+      {
+        "name": "C/C++, Typescript, Python/PyTorch"
+      }
+    ]
+  },
   "educations": [
     {
-      "name": "Bachelor's Degree in Computer Science (Credit Bank System)",
-      "period": "Sep 2025 ~ Feb 2026 (Expected Graduation)"
+      "name": "Academic Credit Bank System, Bachelor of Computer Engineering",
+      "period": "Sep 2025 ~ Feb 2026 (Expected)"
     },
     {
-      "name": "Kyungmin University, Associate's Degree in Software Engineering (3-year program, Graduated)",
+      "name": "Gyeongmin University, Associate of Software (3-year program, Graduated)",
       "period": "Mar 2019 ~ Feb 2024"
     },
     {
-      "name": "Engineer Information Processing (Certified)",
+      "name": "Engineer Information Processing (Acquired)",
       "period": "Sep 2025 ~ Present"
     }
   ]
